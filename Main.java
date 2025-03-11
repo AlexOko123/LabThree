@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\Ok\\IdeaProjects\\LAB2\\LabThree\\.idea\\file3.csv"; // Change to actual path if needed
+        String filePath = ".idea/file3.csv"; // Change to actual path if needed
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("📌 Choose an option:");
