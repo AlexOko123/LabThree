@@ -1,46 +1,33 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
-import java.util.Map;
 
 public class TableFrame extends JFrame {
     public TableFrame(String filePath) {
-        setTitle("📊 CSV Data Viewer"); // ✅ Clear title
-        setSize(800, 600);
+        setTitle("📊 Data Viewer");
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);  // Center the window
+        setLayout(new BorderLayout());
 
-        try {
-            CSVReader reader = new CSVReader(filePath);
-            List<Map<String, String>> data = reader.getData();
-            List<String> headers = reader.getHeaders();
+        // Panels
+        TablePanel tablePanel = new TablePanel(filePath);
+        StatsPanel statsPanel = new StatsPanel(tablePanel.getDataProcessor());
+        ChartPanel chartPanel = new ChartPanel(tablePanel.getDataProcessor());
+        DetailsPanel detailsPanel = new DetailsPanel();
+        FilterPanel filterPanel = new FilterPanel(tablePanel, statsPanel, chartPanel);
 
-            // ✅ Handle empty data gracefully
-            if (data.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "⚠️ Error: No data found in file!", "Data Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        // Add Selection Listener for Details Panel
+        tablePanel.setDetailsPanel(detailsPanel);
 
-            // ✅ Create table with labeled columns
-            DefaultTableModel tableModel = new DefaultTableModel();
-            for (String header : headers) {
-                tableModel.addColumn(header);
-            }
+        // Layout Setup
+        JPanel leftPanel = new JPanel(new BorderLayout());
+        leftPanel.add(filterPanel, BorderLayout.NORTH);
+        leftPanel.add(statsPanel, BorderLayout.CENTER);
 
-            // ✅ Populate table with data
-            data.forEach(row -> tableModel.addRow(headers.stream().map(row::get).toArray()));
+        add(leftPanel, BorderLayout.WEST);
+        add(tablePanel, BorderLayout.CENTER);
+        add(chartPanel, BorderLayout.EAST);
+        add(detailsPanel, BorderLayout.SOUTH);
 
-            JTable table = new JTable(tableModel);
-            table.setAutoCreateRowSorter(true); // ✅ Enable sorting
-
-            JScrollPane scrollPane = new JScrollPane(table);
-            add(scrollPane, BorderLayout.CENTER); // ✅ Ensure TablePanel
-
-            setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "❌ Error loading data: " + e.getMessage(), "File Error", JOptionPane.ERROR_MESSAGE);
-        }
+        setVisible(true);
     }
 }
