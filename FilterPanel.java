@@ -9,9 +9,9 @@ public class FilterPanel extends JPanel {
     private JButton applyFilterButton, clearFilterButton;
     private TablePanel tablePanel;
     private StatsPanel statsPanel;
-    private ChartPanel chartPanel;
+    private PopulationChartPanel chartPanel;
 
-    public FilterPanel(TablePanel tablePanel, StatsPanel statsPanel, ChartPanel chartPanel) {
+    public FilterPanel(TablePanel tablePanel, StatsPanel statsPanel, PopulationChartPanel chartPanel) {
         this.tablePanel = tablePanel;
         this.statsPanel = statsPanel;
         this.chartPanel = chartPanel;

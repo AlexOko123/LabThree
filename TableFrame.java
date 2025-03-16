@@ -11,7 +11,7 @@ public class TableFrame extends JFrame {
         // Panels
         TablePanel tablePanel = new TablePanel(filePath);
         StatsPanel statsPanel = new StatsPanel(tablePanel.getDataProcessor());
-        ChartPanel chartPanel = new ChartPanel(tablePanel.getDataProcessor());
+        PopulationChartPanel chartPanel = new PopulationChartPanel(tablePanel.getDataProcessor());
         DetailsPanel detailsPanel = new DetailsPanel();
         FilterPanel filterPanel = new FilterPanel(tablePanel, statsPanel, chartPanel);
 
