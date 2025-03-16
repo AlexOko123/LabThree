@@ -16,7 +16,7 @@ public class FilterPanel extends JPanel {
         this.statsPanel = statsPanel;
         this.chartPanel = chartPanel;
 
-        setBorder(BorderFactory.createTitledBorder("🔍 Filters"));
+        setBorder(BorderFactory.createTitledBorder("Filters"));
         setLayout(new GridLayout(4, 2));
 
         // Country Filter
@@ -24,11 +24,12 @@ public class FilterPanel extends JPanel {
         countryFilterField = new JTextField();
         add(countryFilterField);
 
-        // Population Range Filters
+        // Population Range Filters- min population
         add(new JLabel("Min Population:"));
         minPopField = new JTextField();
         add(minPopField);
 
+        //max population
         add(new JLabel("Max Population:"));
         maxPopField = new JTextField();
         add(maxPopField);

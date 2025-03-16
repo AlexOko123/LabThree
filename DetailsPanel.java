@@ -6,7 +6,7 @@ public class DetailsPanel extends JPanel {
     private JTextArea detailsArea;
 
     public DetailsPanel() {
-        setBorder(BorderFactory.createTitledBorder("📋 Details"));
+        setBorder(BorderFactory.createTitledBorder("Details"));
         setLayout(new BorderLayout());
 
         detailsArea = new JTextArea(5, 30);

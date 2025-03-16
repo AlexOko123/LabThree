@@ -10,7 +10,7 @@ public class TablePanel extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
     private DataProcessor dataProcessor;
-    private List<String> headers;  // ✅ Define headers
+    private List<String> headers;
     private DetailsPanel detailsPanel;
 
     public TablePanel(String filePath) {
@@ -19,7 +19,7 @@ public class TablePanel extends JPanel {
         // Load Data
         CSVReader reader = new CSVReader(filePath);
         dataProcessor = new DataProcessor(reader.getData());
-        headers = reader.getHeaders(); // ✅ Retrieve headers
+        headers = reader.getHeaders();
 
         // Create Table Model
         tableModel = new DefaultTableModel();
@@ -44,7 +44,7 @@ public class TablePanel extends JPanel {
 
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
-
+    //populate our table with data from our csv
     private void populateTable(List<Map<String, String>> data) {
         tableModel.setRowCount(0); // Clear table
         for (Map<String, String> row : data) {
@@ -59,7 +59,7 @@ public class TablePanel extends JPanel {
 
 
     public void clearFilters() {
-        applyFilters(null, null, null); // ✅ Reset table without integer constraints
+        applyFilters(null, null, null); // Reset table without integer constraints
     }
 
 

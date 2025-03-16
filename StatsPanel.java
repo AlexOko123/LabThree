@@ -6,7 +6,7 @@ public class StatsPanel extends JPanel {
 
     public StatsPanel(DataProcessor dataProcessor) {
         setLayout(new GridLayout(3, 1));
-        setBorder(BorderFactory.createTitledBorder("📊 Statistics"));
+        setBorder(BorderFactory.createTitledBorder("Statistics"));
 
         minLabel = new JLabel();
         maxLabel = new JLabel();
@@ -20,8 +20,8 @@ public class StatsPanel extends JPanel {
     }
 
     public void updateStats(DataProcessor dataProcessor) {
-        minLabel.setText("📉 Min Population: " + dataProcessor.getMinPopulation());
-        maxLabel.setText("📈 Max Population: " + dataProcessor.getMaxPopulation());
-        avgLabel.setText("📊 Avg Population: " + dataProcessor.getAvgPopulation());
+        minLabel.setText("Min Population: " + dataProcessor.getMinPopulation());
+        maxLabel.setText("Max Population: " + dataProcessor.getMaxPopulation());
+        avgLabel.setText("Avg Population: " + dataProcessor.getAvgPopulation());
     }
 }

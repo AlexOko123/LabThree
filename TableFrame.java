@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class TableFrame extends JFrame {
     public TableFrame(String filePath) {
-        setTitle("📊 Data Viewer");
+        setTitle("Data Viewer");
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
