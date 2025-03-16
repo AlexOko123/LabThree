@@ -58,8 +58,8 @@ public class FilterPanel extends JPanel {
         String minPopStr = minPopField.getText().trim();
         String maxPopStr = maxPopField.getText().trim();
 
-        Integer minPop = minPopStr.isEmpty() ? null : Integer.parseInt(minPopStr);
-        Integer maxPop = maxPopStr.isEmpty() ? null : Integer.parseInt(maxPopStr);
+        Double minPop = minPopStr.isEmpty() ? null : Double.parseDouble(minPopStr);
+        Double maxPop = maxPopStr.isEmpty() ? null : Double.parseDouble(maxPopStr);
 
         tablePanel.applyFilters(country, minPop, maxPop);
     }

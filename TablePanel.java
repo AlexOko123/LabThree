@@ -52,15 +52,16 @@ public class TablePanel extends JPanel {
         }
     }
 
-    public void applyFilters(String country, Integer minPop, Integer maxPop) {
+    public void applyFilters(String country, Double minPop, Double maxPop) {
         dataProcessor.applyFilters(country, minPop, maxPop);
         populateTable(dataProcessor.getFilteredData());
     }
 
+
     public void clearFilters() {
-        dataProcessor.clearFilters();
-        populateTable(dataProcessor.getFilteredData());
+        applyFilters(null, null, null); // ✅ Reset table without integer constraints
     }
+
 
     public DataProcessor getDataProcessor() {
         return dataProcessor;
