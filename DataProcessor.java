@@ -18,32 +18,29 @@ public class DataProcessor {
     }
 
     public void applyFilters(String country, Double minPop, Double maxPop) {
-        filteredData = data.stream().filter(row -> {
-            boolean matches = true;
+        FilterStrategy strategy;
 
-            // Country Name Filter
-            if (country != null && !country.isEmpty()) {
-                matches &= row.get("Country Name").toLowerCase().contains(country.toLowerCase());
-            }
+        if ((country == null || country.isEmpty()) && minPop == null && maxPop == null) {
+            filteredData = data; // No filters
+            return;
+        }
 
-            // Population Filters (Use Double Instead of Integer)
-            try {
-                double population = Double.parseDouble(row.get("2015 [YR2015]").replace(",", "").trim());
+        if (country != null && !country.isEmpty() && (minPop != null || maxPop != null)) {
+            strategy = new CombinedFilterStrategy(
+                    new CountryFilterStrategy(country),
+                    new PopulationFilterStrategy(minPop, maxPop)
+            );
+        } else if (country != null && !country.isEmpty()) {
+            strategy = new CountryFilterStrategy(country);
+        } else {
+            strategy = new PopulationFilterStrategy(minPop, maxPop);
+        }
 
-                if (minPop != null) {
-                    matches &= population >= minPop; // Compare as double
-                }
-
-                if (maxPop != null) {
-                    matches &= population <= maxPop; // Compare as double
-                }
-            } catch (NumberFormatException | NullPointerException e) {
-                matches = false; // If parsing fails, exclude this row
-            }
-
-            return matches;
-        }).collect(Collectors.toList());
+        filteredData = data.stream()
+                .filter(strategy::apply)
+                .collect(Collectors.toList());
     }
+
 
 
     public void clearFilters() {
