@@ -1,3 +1,5 @@
+Our first pattern was a Strategy Pattern.
+
 1. Before the Strategy Pattern
 All filtering logic was hardcoded inside DataProcessor.applyFilters().
 
@@ -17,3 +19,13 @@ If you want new filtering behavior (e.g., filter by GDP, continent, or literacy 
  You just create a new GDPFilterStrategy, ContinentFilterStrategy class.
 
 No need to touch or modify DataProcessor anymore!
+
+Our next pattern is the factory pattern.
+
+1. We refactored the panel creation process in the TableFrame class using the Factory Method Pattern.
+2.This pattern centralizes and simplifies the creation of different GUI components (JPanel objects) in a single class, called PanelFactory.
+3. This makes the project easier to extend (i.e. adding new panels)
+
+
+
+
