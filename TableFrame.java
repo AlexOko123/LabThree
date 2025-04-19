@@ -9,11 +9,12 @@ public class TableFrame extends JFrame {
         setLayout(new BorderLayout());
 
         // Panels
-        TablePanel tablePanel = new TablePanel(filePath);
-        StatsPanel statsPanel = new StatsPanel(tablePanel.getDataProcessor());
-        PopulationChartPanel chartPanel = new PopulationChartPanel(tablePanel.getDataProcessor());
-        DetailsPanel detailsPanel = new DetailsPanel();
-        FilterPanel filterPanel = new FilterPanel(tablePanel, statsPanel, chartPanel);
+        TablePanel tablePanel = (TablePanel) PanelFactory.createPanel("Table", filePath);
+        StatsPanel statsPanel = (StatsPanel) PanelFactory.createPanel("Stats", tablePanel.getDataProcessor());
+        PopulationChartPanel chartPanel = (PopulationChartPanel) PanelFactory.createPanel("Chart", tablePanel.getDataProcessor());
+        DetailsPanel detailsPanel = (DetailsPanel) PanelFactory.createPanel("Details");
+        FilterPanel filterPanel = (FilterPanel) PanelFactory.createPanel("Filter", tablePanel, statsPanel, chartPanel);
+
 
         // Add Selection Listener for Details Panel
         tablePanel.setDetailsPanel(detailsPanel);
